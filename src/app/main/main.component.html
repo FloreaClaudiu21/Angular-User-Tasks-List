@@ -1,0 +1,21 @@
+<ng-container *ngIf="!UserService.loadingState; else loadingUser">
+  <ng-container
+    *ngIf="UserService.isAuthenticated(); then main; else login"
+  ></ng-container>
+  <ng-template #login>
+    <app-login></app-login>
+  </ng-template>
+  <ng-template #main>
+    <app-logged></app-logged>
+  </ng-template>
+</ng-container>
+<ng-template #loadingUser>
+  <div class="relative h-screen w-full bg-black">
+    <div
+      class="flex flex-col gap-3 justify-center place-items-center absolute h-full w-full bg-[rgba(0,0,0,0.7)] z-50"
+    >
+      <img src="../../assets/loading.gif" alt="" class="object-cover" />
+      <p class="text-white text-base ml-6">Loading userdata...</p>
+    </div>
+  </div>
+</ng-template>

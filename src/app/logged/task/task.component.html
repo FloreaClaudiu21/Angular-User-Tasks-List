@@ -1,0 +1,66 @@
+<div
+  class="flex relative flex-col gap-2 bg-white rounded-md h-auto shadow-md overflow-hidden break-words group"
+>
+  <div
+    class="top-1 right-[-60px] invisible group-hover:visible group-hover:right-1 transition-all duration-150 absolute bg-white border-2 border-red-400 p-1 rounded-full hover:bg-red-300 shadow-sm"
+  >
+    <button
+      title="Delete the task"
+      (click)="delete_task()"
+      class="text-xs text-white"
+    >
+      🗑️
+    </button>
+  </div>
+  <div
+    class="top-1 right-[-120px] invisible group-hover:visible group-hover:right-9 transition-all duration-150 absolute bg-white border-2 border-blue-400 p-1 rounded-full hover:bg-blue-300 shadow-md"
+  >
+    <ng-component
+      *ngIf="isEditing; then saveEdit; else startEdit"
+    ></ng-component>
+    <ng-template #saveEdit>
+      <button
+        (click)="edit_task()"
+        title="Save the task"
+        class="text-xs text-white"
+      >
+        💾
+      </button>
+    </ng-template>
+    <ng-template #startEdit>
+      <button
+        (click)="edit_task()"
+        title="Edit the task"
+        class="text-xs text-white"
+      >
+        ✏️
+      </button>
+    </ng-template>
+  </div>
+  <div class="bg-[#eee] p-1 text-center font-bold text-xs">
+    Task ID: <span class="font-medium text-xs">{{ TaskData?.taskuuid }}</span>
+  </div>
+  <div class="flex flex-col w-full p-1 gap-1">
+    <span class="text-sm font-semibold">Title:</span>
+    <hr />
+    <span class="font-normal text-xs">{{ TaskData?.title }}</span>
+  </div>
+  <div class="flex flex-col w-full p-1 gap-1">
+    <span class="text-sm font-semibold">Description:</span>
+    <hr />
+    <span class="font-normal text-xs">{{ TaskData?.desc }}</span>
+  </div>
+  <div
+    class="flex h-auto p-1 place-items-center gap-2 flex-row bg-[#eee] shadow-sm"
+    title="{{ TaskData?.email }}"
+  >
+    <img
+      class="w-6 h-6 rounded-full shadow-sm"
+      src="{{ TaskData?.photo }}"
+      alt=""
+    />
+    <span class="overflow-hidden break-words font-medium">{{
+      TaskData?.username
+    }}</span>
+  </div>
+</div>

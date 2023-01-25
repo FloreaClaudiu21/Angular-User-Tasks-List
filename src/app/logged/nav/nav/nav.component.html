@@ -1,0 +1,28 @@
+<nav
+  class="flex flex-col sm:flex-row w-full h-auto sm:h-20 bg-white shadow-md px-3 py-2 gap-2"
+>
+  <div
+    title="{{ userData?.email }}"
+    class="flex flex-row gap-2 place-items-center"
+  >
+    <img
+      src="{{ userData?.photo }}"
+      alt=""
+      class="h-12 w-12 rounded-full shadow-md"
+    />
+    <div class="flex flex-col overflow-hidden">
+      <span class="text-base sm:text-sm">{{ userData?.name }}</span>
+      <p class="text-xs overflow-hidden text-ellipsis whitespace-nowrap">
+        {{ userData?.email }}
+      </p>
+    </div>
+  </div>
+  <div class="flex flex-1 justify-center sm:justify-end place-items-center">
+    <button
+      (click)="UserService.logout()"
+      class="bg-red-400 hover:bg-red-500 p-2 rounded-md text-sm sm:text-base text-white shadow-lg"
+    >
+      Logout
+    </button>
+  </div>
+</nav>
